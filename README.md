@@ -1,5 +1,9 @@
+# 根据原作者的项目进行改进    原作者：https://github.com/Summerjie007
+
+
 # vue-MoreMall
 一个基于vue全家桶的pc端综合性网上购物商城，包括前台商城和后台管理系统，请求数据采用axios，后端采用koa2，数据库采用mysql。
+
 
 ## 已完成功能
 
