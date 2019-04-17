@@ -2,11 +2,11 @@
   <div class="MallShow">
     <FixedNav v-show="navShouldFixed">
       <div slot="navContent" class="container fixedNavContainer">
-        <h3 class="fixedLeft" @click="navTo('/mall/show/index')">果蔬好线上超市</h3>
+        <h3 class="fixedLeft" @click="navTo('/mall/show/index')">果海芳馨</h3>
         <ul class="fixedRight">
-          <li 
-            v-for="(item,index) in typeList" 
-            :key="'type'+item.id" 
+          <li
+            v-for="(item,index) in typeList"
+            :key="'type'+item.id"
             :class="{selected:judgeCurPath(item.id)}"
             @click="selectType(item.id)"
           >
@@ -29,9 +29,9 @@
       </div>
     </div>
     <ul ref="typeList" class="typeList">
-      <li 
-        v-for="(item,index) in typeList" 
-        :key="'type'+item.id" 
+      <li
+        v-for="(item,index) in typeList"
+        :key="'type'+item.id"
         :class="{selected:judgeCurPath(item.id)}"
         @click="selectType(item.id)"
       >

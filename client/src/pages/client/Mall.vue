@@ -2,7 +2,7 @@
   <div class="Mall">
     <header>
       <div class="container clear">
-        <span class="title" @click="navTo('/mall')">果蔬好线上超市 一站式选购平台</span>
+        <span class="title" @click="navTo('/mall')">果海芳馨 一站式选购平台</span>
         <NoticeList :notices="notices"/>
         <div class="right" v-if="clientToken">
           <span class="name">欢迎您，{{clientName}}</span>
@@ -49,8 +49,8 @@
           <span><i class="iconfont icon-fabulous" />用户反馈</span>
         </div>
         <div class="intro footerItem">
-          <p class="title">何为果蔬好线上超市</p>
-          <p class="intro-p">果蔬好线上超市原创生活类电商品牌，秉承网易一贯的严谨态度，我们深入世界各地，从源头全程严格把控商品生产环节，力求帮消费者甄选到优质的商品</p>
+          <p class="title">何为果海芳馨</p>
+          <p class="intro-p">果海芳馨原创生活类电商品牌，秉承网易一贯的严谨态度，我们深入世界各地，从源头全程严格把控商品生产环节，力求帮消费者甄选到优质的商品</p>
           <div>
             关注我们：
             <img src="http://yanxuan.nosdn.127.net/60068701f3a380911f237c26c91b39d0.png" alt=""/>

@@ -1,7 +1,7 @@
 <template>
   <div class="ClientLogin" :style="{width:width+'px',height:height+'px'}">
     <div class="content">
-      <h3>果蔬好线上超市</h3>
+      <h3>果海芳馨</h3>
       <div class="tag">
         <span @click="setIndex(0)" :class="{selected:curIndex===0}">登录</span>
         <span @click="setIndex(1)" :class="{selected:curIndex===1}">注册</span>
