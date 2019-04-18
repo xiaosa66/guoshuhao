@@ -51,6 +51,7 @@ exports.getGoodsByType = async (ctx)=>{
 					goodsId:item.dataValues.id
 				}
 			});
+			console.log('spec',spec);
 			goodsList.push({
 				id:item.dataValues.id,
 				img:item.dataValues.img,
@@ -65,9 +66,11 @@ exports.getGoodsByType = async (ctx)=>{
 		}
 	}
 	catch(e){
+		console.log('getGoodsByType:',e);
 		ctx.body = {
 			code:10000,
-			message:'网络错误'
+			message:'网络错误',
+			e:e
 		}
 	}
 }

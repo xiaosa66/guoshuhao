@@ -82,7 +82,8 @@ let router = new Router({
           },
         }
       ]
-    },{//404页面
+    },
+    {//404页面
     	path:'*',
     	name:'ErrorPage',
     	component: ErrorPage

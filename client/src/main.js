@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import Vue from 'vue';
 import App from './App';
 import router from './router/client';
+// import router from './router/admin';
 import store from './store';
 
 import './assets/css/common.less';
