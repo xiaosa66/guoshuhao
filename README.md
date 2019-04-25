@@ -15,5 +15,19 @@
 9. 修改资料；
 10. 后台管理；
 
+## 食用方法:
+
+打开命令行
+
+         cd server 
+         npm i
+         npm run dev
+         cd ../client
+         npm i 
+         npm run dev
+         
+         
+打开浏览器访问 localhost:8080
+
 
 
