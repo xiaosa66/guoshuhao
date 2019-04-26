@@ -66,7 +66,7 @@ exports.getGoodsByType = async (ctx)=>{
 		}
 	}
 	catch(e){
-		console.log('getGoodsByType:',e);
+		console.log('网络错误 getGoodsByType:');
 		ctx.body = {
 			code:10000,
 			message:'网络错误',

@@ -72,7 +72,7 @@ exports.getNoReplyMsg = async (ctx)=>{
 		}
 	}
 	catch(e){
-		console.log('eeeeeeeeee',e)
+		console.log('网络出错')
 		ctx.body={
 			code:10000,
 			message:'网络出错'
@@ -153,7 +153,7 @@ exports.getRepliedMsg = async (ctx)=>{
 		}
 	}
 	catch(e){
-		console.log('eeeeeeeeee',e)
+		console.log('网络出错')
 		ctx.body={
 			code:10000,
 			message:'网络出错'
