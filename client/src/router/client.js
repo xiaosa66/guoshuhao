@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import store from '@/store';
 
+
+/*****  商城路由  *****/
 import Mall from '@/pages/client/Mall';
 import MallShow from '@/pages/client/MallShow';
 import MallIndex from '@/pages/client/MallIndex';
@@ -13,6 +15,9 @@ import Personal from '@/pages/client/Personal';
 import MyOrder from '@/pages/client/MyOrder';
 import MyData from '@/pages/client/MyData';
 import Cart from '@/pages/client/Cart';
+
+
+/*****  errorPage  *****/
 import ErrorPage from '@/pages/ErrorPage';
 
 Vue.use(Router);
@@ -20,96 +25,97 @@ Vue.use(Router);
 let router = new Router({
   routes: [
     {
-      path:"/",
-      redirect:"/mall"
-    },{
+      path: "/",
+      redirect: "/mall"
+    },
+    {
       path: '/login',
       name: 'MallLogin',
       component: MallLogin
-    },{
+    }, {
       path: '/mall',
       name: 'Mall',
       component: Mall,
-      redirect:'/mall/show',
-      children:[
+      redirect: '/mall/show',
+      children: [
         {
           path: 'show',
           name: 'MallShow',
           component: MallShow,
-          redirect:'/mall/show/index',
-          children:[
+          redirect: '/mall/show/index',
+          children: [
             {
               path: 'index',
               name: 'MallIndex',
               component: MallIndex
-            },{
+            }, {
               path: 'goodsList/:typeId/:keyword',
               name: 'GoodsList',
               component: GoodsList
             },
           ]
-        },{
+        }, {
           path: 'goods/:id',
           name: 'GoodsDetail',
           component: GoodsDetail
-        },{
+        }, {
           path: 'personal',
           name: 'Personal',
           component: Personal,
-          redirect:'/mall/personal/cart',
-          children:[
+          redirect: '/mall/personal/cart',
+          children: [
             {
               path: 'cart',
               name: 'Cart',
               component: Cart,
               meta: {
-                requireLogin:true,
+                requireLogin: true,
               },
-            },{
+            }, {
               path: 'myData',
               name: 'MyData',
               component: MyData,
               meta: {
-                requireLogin:true,
+                requireLogin: true,
               },
-            },{
+            }, {
               path: 'myOrder',
               name: 'MyOrder',
               component: MyOrder,
               meta: {
-                requireLogin:true,
+                requireLogin: true,
               },
             }
           ]
         }
       ]
-    },{
-  	  path:'*',
-  	  name:'ErrorPage',
-  	  component: ErrorPage
+    }, {
+      path: '*',
+      name: 'ErrorPage',
+      component: ErrorPage
     }
   ],
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
-      return { x: 0, y: 0 }
+      return {x: 0, y: 0}
     }
   }
 });
 
 //登录拦截
-router.beforeEach((to,from,next) => {
-  if(to.meta.requireLogin){
-    if(store.state.clientToken){
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireLogin) {
+    if (store.state.clientToken) {
       next()
-    }else{
+    } else {
       next({
         path: '/login',
-        query:{redirect: to.fullPath}
+        query: {redirect: to.fullPath}
       })
     }
-  }else{
+  } else {
     next();
   }
 });
