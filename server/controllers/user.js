@@ -110,7 +110,7 @@ exports.getData = async (ctx)=>{
   const id = jwt.verify(ctx.query.token,'chambers');
   try{
     const user = await UserModel.findOne({
-        attributes:['id','email','nickname','recipient','address','phone','headimg'],
+        attributes:['id','email','nickname','recipient','address','phone','headimg','pwd'],
         where: {
           id: id
         }
@@ -145,7 +145,7 @@ exports.getData = async (ctx)=>{
 //更改用户资料
 exports.updateUserData = async (ctx)=>{
   const data = ctx.request.body;
-  
+
   try{
     const res = await UserModel.update(
       {
@@ -178,7 +178,7 @@ exports.updateUserData = async (ctx)=>{
 //修改密码
 exports.updatePwd = async (ctx)=>{
   const data = ctx.request.body;
-  
+
   const account = await UserModel.findOne({
       where: {
         id: data.id

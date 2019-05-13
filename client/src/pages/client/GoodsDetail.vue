@@ -23,7 +23,12 @@
             <span>数量：</span>
             <NumberInput v-model="num" :min="1" :max="temStockNum"/>
           </div>
-          <button class="buyBtn" @click="buy">立即购买</button>
+          <template v-if="showPwdInput">
+            <Input type="password" v-model="pwd" placeholder="请输入六位支付密码" maxlength="6" clearable style="width: 200px" />
+            <Button type="success" @click="buy">确认付款</Button>
+            <br>
+          </template>
+          <button class="buyBtn" @click="togglePwdInput">立即购买</button>
           <button @click="addToCart">加入购物车</button>
         </div>
       </div>
@@ -48,9 +53,9 @@
                 <div class="commentInfo">
                   <div class="starList">
                     <i
-                      class="iconfont icon-collection_fill" 
-                      v-for="(star,index) in (item.score/20)" 
-                      :key="item.id+''+index" 
+                      class="iconfont icon-collection_fill"
+                      v-for="(star,index) in (item.score/20)"
+                      :key="item.id+''+index"
                     />
                   </div>
                   <p class="specName">{{item.specName}}</p>
@@ -87,8 +92,8 @@
       <section class="typeGoods rightContainer">
         <div class="title">相似商品</div>
         <ul class="list">
-          <GoodsItem 
-            v-for="(item,index) in filterList" 
+          <GoodsItem
+            v-for="(item,index) in filterList"
             :key="+item.id"
             :id="item.id"
             :img="item.img"
@@ -124,7 +129,7 @@ export default {
       return this.$route.params.id;
     },
     goodsPrice(){
-      let unitPrice = 0; 
+      let unitPrice = 0;
       this.specs.map((item,index)=>{
         if(item.id===this.temSpecId){
           unitPrice = Number(item.unitPrice);
@@ -133,7 +138,7 @@ export default {
       return (this.num*unitPrice);
     },
     temStockNum(){
-      let stockNum = 0; 
+      let stockNum = 0;
       this.specs.map((item,index)=>{
         if(item.id===this.temSpecId){
           stockNum = Number(item.stockNum);
@@ -156,6 +161,8 @@ export default {
       typeId:'',
       temSpecId:0,
       num:1,
+      pwd:'',
+      showPwdInput:false,
       msgList:[],
       askContent:'',
       tagList:['评价','商品问答'],
@@ -247,20 +254,25 @@ export default {
       })
     },
 
+    togglePwdInput(){
+      this.showPwdInput = !this.showPwdInput;
+    },
+
     buy(){
       if(!this.clientToken){
         alert('请先登录！');
         return;
       }
-      const res = addOrder({
+       addOrder({
         token:this.clientToken,
+        pwd:this.pwd,
         goodsDetailId:this.temSpecId,
         num:this.num,
         state:1,
         amount:this.goodsPrice
-      });
-      res
-      .then(()=>{
+      })
+      .then((res)=>{
+        console.log(res);
         alert('自动付款成功！请耐心等待包裹派送~')
       })
       .catch((e)=>{

@@ -2,12 +2,11 @@ const GoodsDetailModel = require('../models/GoodsDetailModel.js');
 const GoodsModel = require('../models/GoodsModel.js');
 const TypeModel = require('../models/TypeModel.js');
 const MessageModel = require('../models/MessageModel.js');
+const jwt = require('jsonwebtoken');
 const ReplyModel = require('../models/ReplyModel.js');
 const UserModel = require('../models/UserModel.js');
 const OrderModel = require('../models/OrderModel.js');
 const CommentModel = require('../models/CommentModel.js');
-
-const jwt = require('jsonwebtoken');
 const moment = require('moment');
 
 //得到不同类目的商品
@@ -226,17 +225,34 @@ exports.askGoodsMsg = async (ctx)=>{
 
 //加入购物车或立即购买
 exports.addOrder = async (ctx)=>{
-	const token = ctx.request.body.token;
+	const {token,pwd} = ctx.request.body;
+	const id = jwt.verify(token,'chambers');
+		const user = await UserModel.findOne({
+			attributes:['pwd'],
+			where: {
+				id: id
+			}
+		})
+		console.log(user.pwd,pwd,'sdfasdfasdfasfas')
+		if(user.pwd!=pwd){
+			ctx.body = {
+				code:-1,
+				message:'支付密码错误'
+			}
+			return
+		}
 	try{
 		const res = OrderModel.create({
 			userId:jwt.verify(token,'chambers'),
 			goodsDetailId:ctx.request.body.goodsDetailId,
 			goodsNum:ctx.request.body.num,
+			pwd:ctx.request.body.pwd,
 			amount:ctx.request.body.amount,
 			state:ctx.request.body.state,
 			updatetime:new Date(),
 			createtime:new Date()
 		});
+
 		//如果是立即购买的话，库存要马上变动
 		if(ctx.request.body.state===1){
 			const spec = await GoodsDetailModel.findOne({

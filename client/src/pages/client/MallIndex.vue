@@ -1,7 +1,7 @@
 <template>
   <div class="MallIndex">
     <FadeSwiper class="swiperBox" :width="clientWidth" height="420px">
-      <img class="banner" slot="item1" src="../../assets/img/banner1.jpg" />
+      <img class="banner" slot="item1" src="../../assets/img/fruit-banner.jpg" />
       <img class="banner" slot="item2" src="../../assets/img/banner2.jpg" />
       <img class="banner" slot="item3" src="../../assets/img/banner3.jpg" />
     </FadeSwiper>
