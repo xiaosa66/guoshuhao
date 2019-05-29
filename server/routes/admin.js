@@ -44,11 +44,17 @@ router.delete('/api/admin/deleteOrder', orderAdmin.deleteOrder);
 //得到类目
 router.get('/api/admin/getType', goodsAdmin.getType);
 
+//得到推荐类目
+router.get('/api/admin/getRecType', goodsAdmin.getRecType);
+
 //得到商品
 router.get('/api/admin/getGoodsByType', goodsAdmin.getGoodsByType);
 
 //增加类目
 router.post('/api/admin/addType', goodsAdmin.addType);
+
+//增加推荐类目
+router.post('/api/admin/addType', goodsAdmin.addRecType);
 
 //得到商品
 router.get('/api/admin/getGoodsInfo', goodsAdmin.getGoodsInfo);

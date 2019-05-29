@@ -165,7 +165,7 @@ export default {
       showPwdInput:false,
       msgList:[],
       askContent:'',
-      tagList:['评价','商品问答'],
+      tagList:['留言评价'],
       curIndex:0,
       rate:'',
       commentList:[],

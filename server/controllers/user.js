@@ -1,4 +1,5 @@
 const UserModel = require('../models/UserModel.js');
+const AddressModel = require('../models/AddressModel.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
@@ -110,7 +111,7 @@ exports.getData = async (ctx)=>{
   const id = jwt.verify(ctx.query.token,'chambers');
   try{
     const user = await UserModel.findOne({
-        attributes:['id','email','nickname','recipient','address','phone','headimg','pwd'],
+        attributes:['id','email','nickname','recipient','address','phone','headimg','pwd','balance','bankcard_id'],
         where: {
           id: id
         }
@@ -124,15 +125,36 @@ exports.getData = async (ctx)=>{
     }
     ctx.body = {
       code:0,
-      data:{
-        id:user.id,
-        headimg:user.headimg,
-        email:user.email,
-        nickname:user.nickname,
-        recipient:user.recipient,
-        address:user.address,
-        phone:user.phone,
-      }
+      data:user
+    }
+  }catch(e){
+    ctx.body = {
+      code:10000,
+      message:'网络错误'
+    }
+  }
+}
+
+//获取user全部地址
+exports.getAllAddress = async (ctx)=>{
+  const id = jwt.verify(ctx.query.token,'chambers');
+  try{
+    const address = await AddressModel.findAll({
+        attributes:['id','address','name','phone','user_id'],
+        where: {
+          id: id
+        }
+    })
+    if(!address){
+        ctx.body = {
+          code:-1,
+          message:'地址表是空的'
+        };
+        return;
+    }
+    ctx.body = {
+      code:0,
+      data:user
     }
   }catch(e){
     ctx.body = {
@@ -173,7 +195,6 @@ exports.updateUserData = async (ctx)=>{
     }
   }
 }
-
 
 //修改密码
 exports.updatePwd = async (ctx)=>{

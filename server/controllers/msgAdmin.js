@@ -15,13 +15,14 @@ exports.getNoReplyMsg = async (ctx)=>{
 	          	['createtime','DESC']
 	        ],
 			where:{
-				state:0
+				state:'0'
 			}
 		});
 		if(noReplyMsgs.length===0){
 			ctx.body={
-				code:10000,
-				data:[]
+				code:0,
+				data:[],
+				message:'还没有未回复的留言哦'
 			}
 			return;
 		}else{
@@ -80,6 +81,7 @@ exports.getNoReplyMsg = async (ctx)=>{
 	}
 }
 
+
 //获得已回复的留言
 exports.getRepliedMsg = async (ctx)=>{
 	try{
@@ -89,13 +91,14 @@ exports.getRepliedMsg = async (ctx)=>{
 	          	['createtime','DESC']
 	        ],
 			where:{
-				state:1
+				state:'1'
 			}
 		});
 		if(repliedMsg.length===0){
 			ctx.body={
-				code:10000,
-				data:[]
+				code:0,
+				data:[],
+				message:'还没有已回复的留言哦'
 			}
 			return;
 		}else{
@@ -156,7 +159,8 @@ exports.getRepliedMsg = async (ctx)=>{
 		console.log('网络出错')
 		ctx.body={
 			code:10000,
-			message:'网络出错'
+			message:'网络出错',
+			e
 		}
 	}
 }
@@ -172,7 +176,7 @@ exports.reply = async (ctx)=>{
 		});
 		const res2 = await MessageModel.update(
 		      {
-		        state:1
+		        state:'1',
 		      },
 		      {
 		        where: {

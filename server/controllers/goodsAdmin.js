@@ -23,6 +23,24 @@ exports.getType = async (ctx)=>{
 		}
 	}
 }
+//得到推荐类目
+exports.getRecType = async (ctx)=>{
+	try{
+		const types = await TypeModel.findAll({
+			attributes:['id','name']
+		});
+		ctx.body = {
+			code:0,
+			data:types
+		}
+	}
+	catch(e){
+		ctx.body={
+			code:10000,
+			message:'网络出错'
+		}
+	}
+}
 
 //得到商品
 exports.getGoodsByType = async (ctx)=>{
@@ -55,6 +73,25 @@ exports.addType = async (ctx)=>{
 	const name = ctx.request.body.name;
 	try{
 		const res = TypeModel.create({
+			name:name
+		})
+		ctx.body = {
+			code:0
+		}
+	}
+	catch(e){
+		ctx.body={
+			code:10000,
+			message:'网络出错'
+		}
+	}
+}
+
+//增加推荐类目
+exports.addRecType = async (ctx)=>{
+	const name = ctx.request.body.name;
+	try{
+		TypeModel.create({
 			name:name
 		})
 		ctx.body = {
@@ -122,7 +159,42 @@ exports.addGoods = async (ctx)=>{
 				createtime:new Date()
 			})
 		};
-		
+
+		ctx.body = {
+			code:0
+		}
+	}
+	catch(e){
+		ctx.body={
+			code:10000,
+			message:'网络出错'
+		}
+	}
+}
+
+//增加推荐商品
+exports.addRecGoods = async (ctx)=>{
+	const goodsObj = ctx.request.body;
+	try{
+		const goods = await GoodsModel.create({
+			name:goodsObj.name,
+			typeId:goodsObj.typeId,
+			img:goodsObj.img,
+			desc:goodsObj.desc,
+			updatetime:new Date(),
+			createtime:new Date(),
+		});
+		for(let item of goodsObj.specList){
+			const spec = await GoodsDetailModel.create({
+				goodsId:goods.id,
+				specName:item.specName,
+				stockNum:item.stockNum,
+				unitPrice:item.unitPrice,
+				updatetime:new Date(),
+				createtime:new Date()
+			})
+		};
+
 		ctx.body = {
 			code:0
 		}
@@ -147,7 +219,7 @@ exports.addSpec = async (ctx)=>{
 			updatetime:new Date(),
 			createtime:new Date(),
 		});
-		
+
 		ctx.body = {
 			code:0,
 			data:spec
@@ -171,7 +243,7 @@ exports.deleteSpec = async (ctx)=>{
 				specName:specObj.specName
 			}
 		});
-		
+
 		ctx.body = {
 			code:0
 		}

@@ -36,7 +36,7 @@
         <span>商品推荐</span>
         <button @click="addType">添加推荐类目</button>
       </header>
-      <Tag :tagList="tagTextList" @indexChange="changeTag"/>
+      <Tag :tagList="recTagTextList" @indexChange="changeTag"/>
       <div class="content">
         <ul class="clear">
           <li v-for="(item,index) in goodsRecList" :key="'goods'+item.id">
@@ -88,8 +88,8 @@
     data() {
       return {
         tags: [],
-        goodsList: [],
-        goodsRecList: [],
+        goodsList: [],        goodsRecList: [],
+        recTagTextList:["进口水果推荐","应季水果推荐"],
         popupShow: false,
         curIndex: 0
       }

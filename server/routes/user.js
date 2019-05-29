@@ -10,6 +10,9 @@ router.post('/api/user/login', user.login);
 //获得用户基本信息
 router.get('/api/user/data', user.getData);
 
+//获得用户地址
+router.get('/api/user/allAddress', user.getAllAddress);
+
 //更改用户资料
 router.post('/api/user/updateUserData', user.updateUserData);
 

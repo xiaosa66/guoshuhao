@@ -8,6 +8,9 @@
       <li>
         <span>账号</span>
         <p>{{email}}</p>
+      </li>      <li>
+        <span>余额</span>
+        <p>{{balance}}元</p>
       </li>
       <li>
         <span>昵称</span>
@@ -20,6 +23,7 @@
       <li>
         <span>收件地址</span>
         <input type="text" class="long" v-model="address" />
+        <button style="margin-left: 50px">添加地址</button>
       </li>
       <li>
         <span>联系电话</span>
@@ -64,6 +68,7 @@ export default {
       email:'',
       nickname:'',
       recipient:'',
+      balance:'',
       address:'',
       phone:'',
       popupShow:false,
@@ -125,16 +130,16 @@ export default {
   },
 
   mounted(){
-    const res = getUserData(this.clientToken);
-    res
+   getUserData(this.clientToken)
     .then((data)=>{
       this.id = data.id;
       this.headimg = data.headimg;
       this.email = data.email;
       this.nickname = data.nickname;
+      this.balance = data.balance;
       this.recipient = data.recipient;
       this.address = data.address;
-      this.phone = data.phone;    
+      this.phone = data.phone;
     })
     .catch((e)=>{
       alert(e)

@@ -1,7 +1,7 @@
 <template>
   <div class="Messages">
     <header class="clear">
-  		<span>留言管理</span>
+  		<span>评价管理</span>
   	</header>
   	<Tag :tagList="tags" @indexChange="changeTag"/>
   	<div class="content">

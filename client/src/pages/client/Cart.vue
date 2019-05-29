@@ -18,11 +18,11 @@
             </div>
             <span class="unitPrice">{{'￥'+item.goods.unitPrice}}</span>
             <span class="num">
-              <NumberInput 
-                @changeHandle="numberChange(item.id)" 
-                :initNum="item.temGoodsNum" 
-                v-model="item.temGoodsNum" 
-                :min="1" 
+              <NumberInput
+                @changeHandle="numberChange(item.id)"
+                :initNum="item.temGoodsNum"
+                v-model="item.temGoodsNum"
+                :min="1"
                 :max="999"
               />
             </span>
@@ -227,11 +227,8 @@ export default {
           top: 25px;
         }
         button{
-          position: absolute;
-          right: 90px;
-          bottom: 40px;
-          width: 70px;
-          height: 30px;
+          margin:  0px 4px;
+          padding: 3px 5px;
           border-radius: 3px;
           background-color: @falseColor;
           color:white;

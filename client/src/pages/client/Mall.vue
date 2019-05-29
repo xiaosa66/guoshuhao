@@ -50,7 +50,7 @@
         </div>
         <div class="intro footerItem">
           <p class="title">何为果海芳馨</p>
-          <p class="intro-p">果海芳馨原创生活类电商品牌，秉承网易一贯的严谨态度，我们深入世界各地，从源头全程严格把控商品生产环节，力求帮消费者甄选到优质的商品</p>
+          <p class="intro-p">果海芳馨您身边的优质水果超市,从源头全程严格把控商品生产环节，力求帮消费者甄选到优质的商品</p>
           <div>
             关注我们：
             <img src="http://yanxuan.nosdn.127.net/60068701f3a380911f237c26c91b39d0.png" alt=""/>
@@ -78,7 +78,7 @@
           </li>
           <li>
             <img src="//yanxuan.nosdn.127.net/e72ed4de906bd7ff4fec8fa90f2c63f1.png" alt="" />
-            <span>XX品质保证</span>
+            <span>品质保证</span>
           </li>
         </ul>
         <div class="footerBottom">
@@ -93,7 +93,7 @@
             <li>搜索推荐</li>
             <li>友情链接</li>
           </ul>
-          <p>XX公司版权所有 © 1996-2018   食品经营许可证：XXXXXXXXXXXXXXXXX</p>
+          <p>XX公司版权所有 © 1996-2019   食品经营许可证：XXXXXXXXXXXXXXXXX</p>
         </div>
       </div>
     </footer>
@@ -118,7 +118,7 @@ export default {
   },
   data () {
     return {
-      notices:['今日疯抢：牛皮防水男靴仅229元！直减2...','【福利】领1000元APP新人礼'],
+      notices:['今日疯抢：红心火龙果仅售 9 元'],
       clientHeight:getClientSize().height,
       shouldShowBT:false
     }

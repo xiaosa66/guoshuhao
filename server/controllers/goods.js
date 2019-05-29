@@ -228,13 +228,13 @@ exports.addOrder = async (ctx)=>{
 	const {token,pwd} = ctx.request.body;
 	const id = jwt.verify(token,'chambers');
 		const user = await UserModel.findOne({
-			attributes:['pwd'],
+			attributes:['buy_pass'],
 			where: {
 				id: id
 			}
 		})
-		console.log(user.pwd,pwd,'sdfasdfasdfasfas')
-		if(user.pwd!=pwd){
+		console.log(user.buy_pass,pwd,'sdfasdfasdfasfas')
+		if(user.buy_pass!=pwd){
 			ctx.body = {
 				code:-1,
 				message:'支付密码错误'

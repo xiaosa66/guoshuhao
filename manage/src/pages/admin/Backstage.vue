@@ -6,7 +6,7 @@
         <li @click="navTo('/backstage/editUser')" :class="{selected:curPath==='/backstage/editUser'}">用户管理</li>
         <li @click="navTo('/backstage/goods')" :class="{selected:curPath==='/backstage/goods'}">商品管理</li>
         <li @click="navTo('/backstage/orders')" :class="{selected:curPath==='/backstage/orders'}">订单管理</li>
-        <li @click="navTo('/backstage/messages')" :class="{selected:curPath==='/backstage/messages'}">留言管理</li>
+        <li @click="navTo('/backstage/messages')" :class="{selected:curPath==='/backstage/messages'}">评价管理</li>
         <li @click="navTo('/backstage/editAdmin')" :class="{selected:curPath==='/backstage/editAdmin'}">修改资料</li>
       </ul>
     </div><div class="bsRight">
@@ -164,6 +164,6 @@ export default {
         }
       }
     }
-  } 
+  }
 }
 </style>

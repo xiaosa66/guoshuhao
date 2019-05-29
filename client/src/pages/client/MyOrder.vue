@@ -30,10 +30,18 @@
             <span class="unitPrice">{{'￥'+item.goods.unitPrice}}</span>
             <span class="num">{{item.goodsNum}}</span>
             <span class="amount">{{'￥'+item.amount}}</span>
-            <button v-if="item.state===0" @click="confirmPay(item.id)">确认付款</button>
-            <button v-else-if="item.state===2" @click="confirmReceive(item.id)">确认收货</button>
-            <button v-else-if="item.state===3 && !item.hasComment" @click="showPopup(item.id,item.goods.id,item.goods.goodsDetailId)">评价</button>
-            <span class="hasComment" v-else-if="item.state===3 && item.hasComment">已评价</span>
+            <span>
+              <button v-if="item.state==0" @click="confirmPay(item.id)">确认付款</button>
+              <button v-else-if="item.state==1">卖家已发货,请耐心等待收货</button>
+              <button v-else-if="item.state==2" @click="confirmReceive(item.id)">确认收货</button>
+              <div v-else-if="item.state==3" style="display: inline-block;">
+                              <button v-if="!item.hasComment" @click="showPopup(item.id,item.goods.id,item.goods.goodsDetailId)">评价</button>
+                              <button v-else>已评价</button>
+                              <button>退货</button>
+              </div>
+              <span class="hasComment" v-else-if="item.state===3 && item.hasComment">已评价</span>
+            </span>
+
           </div>
         </li>
       </ul>
@@ -42,8 +50,8 @@
       <div class="popupContent" slot="popupContent">
         <div class="scoreBox">
           <span class="tips">评分：</span>
-          <i 
-            class="iconfont icon-collection_fill" 
+          <i
+            class="iconfont icon-collection_fill"
             v-for="(item,index) in 5"
             :key="'star'+index"
             :style="{color:(index+1)<=curStar?'#f9bd4f':'white'}"
@@ -216,6 +224,12 @@ export default {
 
 <style scoped lang="less">
 @import "../../assets/css/var.less";
+.vl {
+  display: flex;
+  align-content: center;
+  vertical-align: center;
+
+}
 .MyOrder{
   .tagList{
     li{
@@ -329,11 +343,8 @@ export default {
             text-align: center;
           }
           button{
-            position: absolute;
-            right: 90px;
-            bottom: 40px;
-            width: 70px;
-            height: 30px;
+            margin:0px 5px;
+            padding: 6px 8px;
             border-radius: 3px;
             background-color: @thirdColor;
             color:white;
