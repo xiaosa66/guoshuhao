@@ -23,11 +23,12 @@
             <span>数量：</span>
             <NumberInput v-model="num" :min="1" :max="temStockNum"/>
           </div>
-          <template v-if="showPwdInput">
-            <Input type="password" v-model="pwd" placeholder="请输入六位支付密码" maxlength="6" clearable style="width: 200px" />
+          <div v-show="showPwdInput">
+            <input type="password" v-model="pwd" placeholder="请输入六位支付密码" maxlength="6" clearable style="width: 200px" />
+            {{pwd}}
             <Button type="success" @click="buy">确认付款</Button>
             <br>
-          </template>
+          </div>
           <button class="buyBtn" @click="togglePwdInput">立即购买</button>
           <button @click="addToCart">加入购物车</button>
         </div>
@@ -276,7 +277,7 @@ export default {
         alert('自动付款成功！请耐心等待包裹派送~')
       })
       .catch((e)=>{
-        alert(e);
+        console.log('付款失败：',e);
       })
     },
 
