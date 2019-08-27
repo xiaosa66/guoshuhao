@@ -75,7 +75,7 @@
       </div>
     </section>
     <section class="hotGoods section">
-      <SectionHeader title="促销水果推荐" tips="最火最潮商品，为您挑选" moreText="更多推荐>"/>
+      <SectionHeader title="促销推荐" tips="最火最潮商品，为您挑选" moreText="更多推荐>"/>
       <div class="content">
         <ul class="left">
           <GoodsItem

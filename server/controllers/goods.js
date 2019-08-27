@@ -254,7 +254,7 @@ exports.addOrder = async (ctx)=>{
 		});
 
 		//如果是立即购买的话，库存要马上变动
-		if(ctx.request.body.state===1){
+		if(ctx.request.body.state==1){
 			const spec = await GoodsDetailModel.findOne({
 				attributes:['stockNum'],
 				where:{
@@ -293,7 +293,7 @@ exports.getOrderByState = async (ctx)=>{
 	try{
 		let orders;
 		//查全部的
-		if(state===-1){
+		if(state==-1){
 			orders = await OrderModel.findAll({
 				where:{
 					userId:userId,
@@ -337,7 +337,7 @@ exports.getOrderByState = async (ctx)=>{
 
 			//如果是已完成订单，那就看看评价过没有
 			let hasComment = false;
-			if(order.dataValues.state===3){
+			if(order.dataValues.state==3){
 				let comment = await CommentModel.findOne({
 					where:{
 						orderId:order.dataValues.id
@@ -397,7 +397,7 @@ exports.deleteOrder = async (ctx)=>{
 		}
 
 		//除了已完成订单和未付款订单外，其它状态的订单被删除，库存量都要加回去
-		if(order.state===1 || order.state===2){
+		if(order.state==1 || order.state==2){
 			const spec = await GoodsDetailModel.findOne({
 				attributes:['stockNum'],
 				where:{
@@ -438,11 +438,19 @@ exports.deleteOrder = async (ctx)=>{
 
 //确认收货
 exports.confirmReceive = async (ctx)=>{
+	console.log('--------------------------------')
+	console.log('--------------------------------')
+	console.log('--------------------------------')
+	console.log('--------------------------------')
+	console.log('--------------------------------')
+	console.log('--------------------------------')
+	console.log('--------------------------------')
+	console.log('--------------------------------')
 	const orderId = ctx.query.id;
 	try{
 		await OrderModel.update(
 	      {
-	        state:3
+	        state:'3'
 	      },
 	      {
 	        where: {
@@ -468,7 +476,7 @@ exports.pay = async (ctx)=>{
 	try{
 		await OrderModel.update(
 	      {
-	        state:1
+	        state:'1'
 	      },
 	      {
 	        where: {
@@ -501,7 +509,7 @@ exports.settleAccounts = async (ctx)=>{
 			});
 			await OrderModel.update(
 		      {
-		        state:1,
+		        state:'1',
 		        goodsNum:item.goodsNum,
 		        amount:item.amount
 		      },{

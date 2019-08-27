@@ -116,7 +116,7 @@
         showFloat:false,
         goodsList: [],
         goodsRecList: [],
-        recTagTextList: ["进口水果推荐", "促销水果推荐", "应季水果推荐"],
+        recTagTextList: ["掌柜推荐", "热卖推荐", "促销推荐"],
         popupShow: false,
         curIndex: 0
       }

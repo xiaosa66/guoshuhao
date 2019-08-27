@@ -25,7 +25,6 @@
           </div>
           <div v-show="showPwdInput">
             <input type="password" v-model="pwd" placeholder="请输入六位支付密码" maxlength="6" clearable style="width: 200px" />
-            {{pwd}}
             <Button type="success" @click="buy">确认付款</Button>
             <br>
           </div>
@@ -166,7 +165,7 @@ export default {
       showPwdInput:false,
       msgList:[],
       askContent:'',
-      tagList:['留言评价'],
+      tagList:['评价','留言'],
       curIndex:0,
       rate:'',
       commentList:[],
